@@ -13,7 +13,7 @@ import jp.co.internous.ecsite.model.entity.Purchase;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 	
-	@Query(value="SELECT * FROM purchase p" +
+	@Query(value="SELECT * FROM purchase p " +
 		"WHERE created_at =(" + 
 		"SELECT MAX(created_at) FROM purchase p WHERE p.user_id = :userId)",
 		nativeQuery=true)

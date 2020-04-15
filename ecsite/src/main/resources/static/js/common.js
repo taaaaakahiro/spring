@@ -7,8 +7,8 @@ let login = (event) => {
 	$.ajax({
 		type:'POST',
 		url:'/ecsite/api/login',
-		data: Json.stringify(jsonString),
-		counterType: 'application/json',
+		data: JSON.stringify(jsonString),
+		contentType: 'application/json',
 		datatype:'json',
 		scriptCharset: 'utf-8'
 	})
@@ -38,10 +38,10 @@ let addCart = (event) =>{
 	}
 	
 	let cart = {
-			'id' = id,
-			'goodsName' = goodsName,
-			'price' = price,
-			'count' = count
+			'id': id,
+			'goodsName' : goodsName,
+			'price' : price,
+			'count' : count
 	};
 	cartList.push(cart);
 	
@@ -89,7 +89,7 @@ let buy = (event) => {
 
 let removeCart = (event) => {
 	const tdList = $(event.target).parent().parent().find('td');
-	let id = $(tdList[0].text()
+	let id = $(tdList[0]).text()
 			cartList = cartList.filter(function(cart){
 				return cart.id !== id;
 			});
@@ -103,7 +103,7 @@ let showHistory = () => {
 		type:'POST',
 		url:'/ecsite/api/history',
 		data:JSON.stringify({"userId":$('#hiddenUserId').val() }),
-		contentType:'application',
+		contentType:'application/json',
 		datatype: 'json',
 		scriptCharset:'utf-8'
 	})
@@ -111,7 +111,7 @@ let showHistory = () => {
 		let historyList = JSON.parse(result);
 		let tbody = $('#historyTable').find('tbody');
 		$(tbody).children().remove();
-		historyList.forEach((history,index) =>{
+		historyList.forEach(function(history,index){
 			let tr = $('<tr />');
 			
 			$('<td />',{'text':history.goodsName}).appendTo(tr);
@@ -121,11 +121,11 @@ let showHistory = () => {
 			$(tr).appendTo(tbody);
 		});
 		$("#history").dialog("open");		
-	});
 	},() => {
 		console.error('Error: ajax connection failed.');
 	}
-};
+	);
+}
 
 
 
