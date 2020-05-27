@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.persistence.criteria.Path;
 import javax.servlet.MultipartConfigElement;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,10 +87,20 @@ public class AdminController {
 		goods.setGoodsName(goodsForm.getGoodsName());
 		goods.setPrice(goodsForm.getPrice());
 		
+		int dot = goodsForm.getImgFile().getOriginalFilename().lastIndexOf(".");
+		String extention = "";
+		if(dot > 0) {
+			
+			extention =  goodsForm.getImgFile().getOriginalFilename().substring(dot).toLowerCase();
+		}
+ 		
+		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now()); 
+		
+		
 		// 2020/5/25 -------------------------------------------------------------------------
 		//goodsへアップロードファイル名を格納
 		
-		goods.setImgFile(goodsForm.getImgFile().getOriginalFilename());
+		goods.setImgFile(filename + extention);
 		
 		//データのsaveとDBへの反映
 		goodsRepos.saveAndFlush(goods);
@@ -111,25 +121,17 @@ public class AdminController {
 //			}
 //		}
 		
-//		
-//		int dot = goodsForm.getImgFile().getOriginalFilename().lastIndexOf(".");
-//		String extention = "";
-//		if(dot > 0) {
-//			extention =  goodsForm.getImgFile().getOriginalFilename().substring(dot).toLowerCase();
-//		}
-// 		
-//		String filename = DateFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now()); 
-//		
-//		Path uploadfile = Paths.get("/Users/takahiro/Desktop/workspace/spring/EscKey_EC/src/main/resources/image/" + filename + extention);
-//		
-//		try(OutputStream os = Files.newOutputStream(uploadfile,StandardOpenOption.CREATE)){
-//			byte[] bytes = goodsForm.getImgFile().getBytes();
-//			os.write(bytes);
-//		}catch(IOException e) {
-//			System.err.println(e);
-//		}
-//		
 		
+		
+		Path uploadfile = Paths.get("/Users/takahiro/Desktop/workspace/spring/EscKey_EC/src/main/resources/static/image/" + filename + extention);
+		//filename + extention);
+		
+		try(OutputStream os = Files.newOutputStream(uploadfile,StandardOpenOption.CREATE)){
+			byte[] bytes = goodsForm.getImgFile().getBytes();
+			os.write(bytes);
+		}catch(IOException e) {
+			System.err.println(e);
+		}
 		
 		
 		
