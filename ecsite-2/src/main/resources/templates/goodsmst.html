@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>My EC Site --admin page</title>
+<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="adminPage">
+	<h2>商品　新規登録</h2>
+	<form name="addGoodsForm" id="addGoodsForm" method="post" action="/ecsite/admin/addGoods" th:action="@{/ecsite/admin/addGoods}">
+		<p>商品名：<input type="text" name="goodsName" th:value="${goodsName}" /></p>
+		<p>価格：<input type="text" name="price" th:value="${price}" /></p>
+		<button type="submit">登録</button>
+		<input type="hidden" name="userName" th:value="${userName}"/>
+		<input type="hidden" name="password" th:value="${password}"/>
+	</form>
+
+</div>
+
+</body>
+</html>

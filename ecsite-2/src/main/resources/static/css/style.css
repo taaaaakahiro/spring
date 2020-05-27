@@ -1,0 +1,171 @@
+
+
+html {
+	font-size:62.5%;
+	box-sizing:border-box;
+}
+body{
+	text-align:center;
+}
+
+header {
+	clear:both;
+	text-align:center;
+	font-size:2rem;
+	font-weight:bold;
+	
+}
+
+
+header #link img {
+	border-radius:50%;
+	width:50px;
+	height:50px;
+	display:inline-block;
+	margin:10px;
+}
+
+
+header #link {
+	float: left;
+}
+
+header #link ul {
+	display:inline-block;
+	padding:0;
+}
+
+header #link li {
+	float:left; 
+	list-style: none;
+	margin-right:30px;
+	
+}
+
+header #link a {
+	text-decoration:none;
+	color:black;
+}
+
+header #link #store{
+	border-bottom:2px orange solid;
+}
+
+
+
+header li a:hover{
+	border-bottom:2px solid orange;
+}
+
+
+header #link li .main {
+	color: lightblue;
+}
+
+#login i {
+	margin-right:5px;
+	transition: transform 0.3s;
+}
+
+#login :hover {
+	
+}
+
+#login #login:hover{
+	transform:rotate(360deg);
+}
+
+
+
+header #login {
+	float:right;
+	margin-right:20px;
+}
+
+header #login a {
+	text-decoration:none;
+	color:black;
+}
+
+.login-form {
+	
+	display:block;
+	clear:both;
+	border:3px solid lightgray;
+	border-radius:10px;
+	width: 60%;
+    padding: 20px;
+    font-weight:bold;
+    margin: 0 auto;
+    font-size:1.4rem;
+    letter-spacing:1px;
+	
+}
+
+
+.login-form label {
+	margin-bottom:30px;
+}
+
+.login-form .loginbtn{
+	width:200px;
+	height:50px;
+	background-color:orange;
+	color:black;
+	border-radius:10px;
+	margin-top:10px;
+}
+
+
+
+main {
+	margin-top:30px;
+	clear:both;
+	font-weight:bold;
+	font-size:2rem;
+	
+}
+
+main > div{
+	text-align:center;
+}
+
+
+
+
+main #item {
+	width:400px;
+	padding:10px 5px;
+	border:1px solid lightgray;
+	float:left;
+	margin-right:10px;
+	margin-bottom:10px;
+	border-radius:10px;
+	
+}
+fieldset {
+	clear:both;
+	width:100%;
+	
+}
+
+main #item img {
+	width:100%;
+}
+
+
+
+
+
+footer {
+	margin-top:40px;
+	padding-top:40px;
+	border-top:1px solid lightgray;
+	color:black;
+}
+
+
+
+
+
+

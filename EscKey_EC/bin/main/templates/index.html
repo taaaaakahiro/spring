@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>EscKey store</title>
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script src="/js/common.js" th:src="@{/js/common.js}"></script>
+<script>
+
+//追加されたカート情報を一覧形式でメモリ上に保存しておくための変数
+let cartList = [];
+
+
+
+$(() =>{
+	$("#loginForm").on("submit",login);
+	$(".cartBtn").on("click",addCart);
+	$("#buyBtn").on("click",buy);
+	$("#historyBtn").on("click",showHistory);
+	
+	$("#history").dialog({
+		autoOpen: false,
+		width: 550,
+		model: true,
+		button:[
+			{
+				text:'OK',
+				click:function(){
+					$(this).dialog("close");
+				}
+			},
+		]
+	});
+});
+
+
+</script>
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider({
+    	  auto:true,
+          mode: 'horizontal',
+          speed: 300,
+          slideWidth:500
+      });
+    });
+  </script>
+
+
+</head>
+
+<body>
+	<header>
+	 <div class="header">	 	
+	 	<div id="link">
+	 		<img src="../image/logo.jpg">
+	 		<ul>
+				<li id="store"><a href="#">EscKey store</a></li>
+				<li id="other "><a href="#">podcast</a></li>
+			</ul>
+	 	</div>
+		
+		<div id="login">
+			<p><i class="fab fa-earlybirds"></i><a href="#">ログイン｜login</a></p>
+		</div>
+	 </div>
+					
+	</header>
+	
+	<form action="#">
+	<div class="login-form" style="display:none">
+		<label>username|名前
+			<input  type="text" placeholder="name">
+		</label>
+		
+		<label>password|パスワード
+			<input type="text" placeholder="password">	
+		</label><br />
+		<label id="remember">
+			<input type="checkbox" style="width:10px;">
+			remember me
+		</label><br />
+		<button class="loginbtn">login|ログイン</button>
+	</div>
+	</form>
+	<script>
+	$(function(){
+		$("#login").on('click',function(){
+			$(".login-form").slideToggle();
+		});
+	});
+	
+	
+	</script>
+			
+		
+	
+	</form>
+	
+	<main>
+		<div  th:each="item:${goods}">
+			<div id="item">
+				<a href="#">
+					<img alt="goods" src="../image/image1.jpg"/>
+				</a>
+				<p th:text="${item.id}"/>
+				<p th:text="${item.goodsName}"/>
+				<p th:text="${item.price}"/>
+				<input type="number" class="count" value="0">
+				<button class="cartBtn">カートに入れる</button>
+							
+			</div>
+		</div>
+		
+		</main>
+		
+
+	
+	
+	
+	
+	
+	<fieldset>
+		<legend>カート</legend>
+		<table id="cart">
+			<thead>
+				<tr>
+					<th>ID</th><th>書品名</th><th>価格</th><th>注文数</th><th>カート</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
+		</table>
+		
+		<button id="buyBtn">購入</button>
+		<button id="historyBtn">履歴</button>
+	</fieldset>
+	
+	
+	<div id="history" title="購入履歴" style="display:none;">
+		<table id="historyTable">
+		<thead>
+		<tr>
+			<th>商品名</th><th>注文数</th><th>購入日時</th>
+		</tr>
+		</thead>
+		<tbody>
+		
+		</tbody>
+		</table>
+	</div>
+	
+	
+
+	<footer>
+		2020 ©　privacy and policy
+	</footer>
+		
+		
+</body>
+</html>
